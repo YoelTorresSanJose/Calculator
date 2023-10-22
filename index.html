@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/estiloscalculadora.css">
+    <!-- <title>Practica NodeJS</title> -->
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <!-- <div class="jumbotron" style="padding: 40px;">
+        <h1>Hello, world!</h1>
+        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="#">Learn more</a></p>
+        <p> </p>
+    </div> -->
+    <h1>Calculadora</h1>
+    <form id="calculator">
+        <input type="text" id="display" readonly>
+        <div>
+            <button type="button" onclick="appendToDisplay('7')">7</button>
+            <button type="button" onclick="appendToDisplay('8')">8</button>
+            <button type="button" onclick="appendToDisplay('9')">9</button>
+            <button type="button" onclick="appendToDisplay('+')">+</button>
+        </div>
+        <div>
+            <button type="button" onclick="appendToDisplay('4')">4</button>
+            <button type="button" onclick="appendToDisplay('5')">5</button>
+            <button type="button" onclick="appendToDisplay('6')">6</button>
+            <button type="button" onclick="appendToDisplay('-')">-</button>
+        </div>
+        <div>
+            <button type="button" onclick="appendToDisplay('1')">1</button>
+            <button type="button" onclick="appendToDisplay('2')">2</button>
+            <button type="button" onclick="appendToDisplay('3')">3</button>
+            <button type="button" onclick="appendToDisplay('*')">*</button>
+        </div>
+        <div>
+            <button type="button" onclick="clearDisplay()">C</button>
+            <button type="button" onclick="appendToDisplay('0')">0</button>
+            <button type="button" onclick="calculateResult()">=</button>
+            <button type="button" onclick="appendToDisplay('/')">/</button>
+        </div>
+    </form>
+    <h2>Historial de resultados</h2>
+    <ul id="result-history"></ul>
+    <script src="assets/js/calculator.js"></script>
+</body>
+
+</html>
