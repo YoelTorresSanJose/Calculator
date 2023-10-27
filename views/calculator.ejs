@@ -1,0 +1,302 @@
+<style>
+    * {
+        background-color: black;
+    }
+
+    @font-face {
+        font-family: 'Roboto', sans-serif;
+        src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+    }
+
+    .botones {
+        display: grid;
+        place-self: center;
+        width: 100%;
+        justify-content: space-around;
+        justify-items: center;
+    }
+
+    .input {
+        background-color: black;
+        color: white;
+        font-size: 15vh;
+        text-align: end;
+        width: 100%;
+        font-family: 'Roboto';
+        margin: 0;
+    }
+
+    button {
+        border: 0;
+        width: 15vh;
+        height: 15vh;
+        border-radius: 100%;
+        font-size: 5vh;
+        margin: 2px;
+    }
+
+    .ColorGris:active {
+        background-color: rgb(99, 99, 99);
+    }
+
+    .ColorNaranja:active{
+        background-color: rgb(255, 255, 255);
+    }
+
+    .ColorG:active{
+        background-color: rgb(235, 234, 234);
+    }
+
+    .cero {
+        width: 30vh;
+        border-radius: 50vh;
+        text-align: left;
+        padding-left: 35px;
+        padding-right: 100px;
+
+    }
+
+    .calculadora {
+        font-family: 'Open 24 Display St';
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .pantalla {
+        background-color: black;
+        display: flex;
+        text-align: end;
+        width: 100%;
+        overflow: hidden;
+        place-self: center;
+    }
+
+    .ColorGris {
+        background-color: rgb(59, 59, 59);
+        color: white;
+    }
+
+    .ColorNaranja {
+        background-color: orange;
+        color: white;
+    }
+
+    .ColorG {
+        background-color: rgb(194, 194, 194);
+        color: black;
+    }
+
+    #C {
+        display: none;
+    }
+
+    .containerbtn{
+        width: 100%;
+        display: flex;
+        place-self: center;
+    }
+    
+    .input2{
+        display: flex;
+        width: 100%;
+        height: 200px;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 992px){
+        button{
+            width: 10vh;
+            height: 10vh;
+            font-size: 4vh;
+        }
+
+        .cero{
+            width: 20vh;
+        }
+
+        .input{
+            font-size: 13vh;
+            padding-bottom: 10%;
+            padding-top: 10%;
+        }
+    
+    }
+    
+    .caca{
+        display: flex;
+        width: 40%;
+        justify-content: flex-end;
+    }
+    
+    .historial-content{
+        font-size: 5vh;
+        font-family: 'Roboto';
+        text-align: end;
+    }
+    
+    @media screen and (max-width: 992px){
+
+        .caca{
+        display: none;
+    }
+    
+    .historial-content{
+        display: none;
+    }
+
+    }
+</style>
+
+
+<div class="calculadora">
+    <div class="containerbtn">
+        <div class="botones">
+            <div class="pantalla">
+                    <h2 class="input" id="display">0</h2>
+                </div>
+                
+                <div class="botones-fx">
+                    <button class="ColorG" id="AC" onclick="DisplayClean(); Remplazo()">AC</button>
+                    <button class="ColorG" onclick="DisplayAdd('('); Remplazo()">(</button>
+                    <button class="ColorG" onclick="DisplayAdd(')'); Remplazo()">)</button>
+                    <button class="ColorNaranja" onclick="DisplayAdd('/'); Remplazo()">/</button>
+                </div>
+                <div class="botones-num">
+                    <button class="ColorGris" onclick="DisplayAdd(7); Remplazo()">7</button>
+                    <button class="ColorGris" onclick="DisplayAdd(8); Remplazo()">8</button>
+                    <button class="ColorGris" onclick="DisplayAdd(9); Remplazo()">9</button>
+                    <button class="ColorNaranja" onclick="DisplayAdd('*'); Remplazo()">x</button>
+                </div>
+                    
+                    <div class="botones-num">
+                        <button class="ColorGris" onclick="DisplayAdd(4); Remplazo()">4</button>
+                        <button class="ColorGris" onclick="DisplayAdd(5); Remplazo()">5</button>
+                        <button class="ColorGris" onclick="DisplayAdd(6); Remplazo()">6</button>
+                        <button class="ColorNaranja" onclick="DisplayAdd('-'); Remplazo()">-</button>
+                    </div>
+                    <div class="botones-num">
+                        <button class="ColorGris" onclick="DisplayAdd(1); Remplazo()">1</button>
+                        <button class="ColorGris" onclick="DisplayAdd(2); Remplazo()">2</button>
+                        <button class="ColorGris" onclick="DisplayAdd(3); Remplazo()">3</button>
+                        <button class="ColorNaranja" onclick="DisplayAdd('+'); Remplazo()">+</button>
+                    </div>
+                    <div class="botones-num">
+                        <button class="ColorGris cero" onclick="DisplayAdd(0); Remplazo()">0</button>
+                        <button class="ColorGris punto" onclick="DisplayAdd('.'); Remplazo()">.</button>
+                        <button class="ColorNaranja" class="igual" onclick="calcular(); Remplazo(); actu()">=</button>    
+                    </div>
+                    
+                </div>
+                <div class="caca"><div class="historial-content" id="historial-content" style="color: #fff;"></div></div>
+            </div>
+    </div>
+    </div>
+        
+</div>
+    
+    <script>
+        let empty = true;
+        let display = document.getElementById("display");
+
+
+
+        const vaciar = () => {
+            const datosVacios = [];
+
+            fs.writeFileSync("HIST.json", JSON.stringify(datosVacios, null, 2));
+        }
+
+        const Remplazo = () => {
+            var contenedor = document.getElementById("AC");
+            if (empty === true) {
+            contenedor.innerHTML = "AC";
+            } else {
+                contenedor.innerHTML = "C";
+            }
+        }
+
+        const DisplayClean = () => {
+            display.textContent = "0";
+            empty = true;
+        }
+
+        const DisplayAdd = (operator) => {
+            if (empty) {
+                if (!isNaN(operator)) {
+                    display.textContent = operator
+                    empty = false
+                } else {
+                    display.textContent = `0${operator}`
+                } 
+            } else {
+                if (isNaN(display.textContent[display.textContent.length - 1])) {
+                    if (!isNaN(operator)) {
+                        display.textContent += operator
+                    } else {
+                        if (operator == "(" || operator == ")") {
+                            display.textContent += operator
+                        } else display.textContent = display.textContent.slice(0, -1) + operator;
+                    }
+                } else {
+                    display.textContent += operator;
+                }
+            }
+        }
+        const calcular = () => {
+
+        try {
+            let cuenta = display.textContent;
+            let resultado = eval(display.textContent);
+            display.textContent = resultado;
+            let registro = {
+            cuenta: cuenta,
+            resultado: resultado
+            };
+
+            const historialDer = document.getElementById('HistorialDer');
+            fetch('/HistorialAdd', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify(registro)
+            })
+            .then(response => response.json())
+            .then(data => {
+            historialDer.innerHTML = '0'; // Borra el contenido anterior del historial;
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+        } catch {
+            display.textContent = 'ERROR';
+            DisplayClean();
+        }
+        }
+
+
+function actu(){
+    const historialContent = document.getElementById('historial-content');
+    fetch('/MostrarHistorial')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.historial && data.historial.length > 0) {
+                            historialContent.innerHTML = ''; // Limpiar el contenido anterior del historial
+                            data.historial.forEach(item => {
+                                const cuenta = item.cuenta;
+                                const resultado = item.resultado;
+                                historialContent.innerHTML += `${resultado} = ${cuenta}<br>`;
+                            });
+                        } else {
+                            historialContent.innerHTML = 'El historial está vacío.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar el historial:', error);
+                    });
+                historialContent.style.display = 'block'; 
+}
+</script>
