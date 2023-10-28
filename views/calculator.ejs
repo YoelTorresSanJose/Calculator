@@ -1,134 +1,304 @@
+
 <style>
-    @font-face {
-        font-family: "Open 24 Display St";
-        src: url('./../assets/font/Open-24-Display-St.ttf');
+* {
+    background-color: black;
+}
+
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+}
+
+.botones {
+    display: grid;
+    place-self: center;
+    width: 100%;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.input {
+    background-color: black;
+    color: white;
+    font-size: 15vh;
+    text-align: end;
+    width: 100%;
+    font-family: 'Roboto';
+    margin: 0;
+}
+
+button {
+    border: 0;
+    width: 15vh;
+    height: 15vh;
+    border-radius: 100%;
+    font-size: 5vh;
+    margin: 2px;
+}
+
+.ColorGris:active {
+    background-color: rgb(99, 99, 99);
+}
+
+.ColorNaranja:active{
+    background-color: rgb(255, 255, 255);
+}
+
+.ColorG:active{
+    background-color: rgb(235, 234, 234);
+}
+
+.cero {
+    width: 30vh;
+    border-radius: 50vh;
+    text-align: left;
+    padding-left: 35px;
+    padding-right: 100px;
+
+}
+
+.calculadora {
+    font-family: 'Open 24 Display St';
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pantalla {
+    background-color: black;
+    display: flex;
+    text-align: end;
+    width: 100%;
+    overflow: hidden;
+    place-self: center;
+}
+
+.ColorGris {
+    background-color: rgb(59, 59, 59);
+    color: white;
+}
+
+.ColorNaranja {
+    background-color: orange;
+    color: white;
+}
+
+.ColorG {
+    background-color: rgb(194, 194, 194);
+    color: black;
+}
+
+#C {
+    display: none;
+}
+
+.containerbtn{
+    width: 100%;
+    display: flex;
+    place-self: center;
+}
+
+.input2{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    margin: 0;
+}
+
+@media screen and (max-width: 992px){
+    button{
+        width: 10vh;
+        height: 10vh;
+        font-size: 4vh;
     }
 
-    .botones {
-        display: block;
-        width: 100vw;
-        padding-left: 38vw;
+    .cero{
+        width: 20vh;
     }
 
-    input {
-        width: 50vw;
-        border: 0;
-        background-color: black;
-        color: white;
-        font-size: 15vh;
-        text-align: end;
+    .input{
+        font-size: 13vh;
+        padding-bottom: 10%;
+        padding-top: 10%;
     }
 
-    div {
-        display: flex;
-    }
+}
 
-    button {
-        width: 15vh;
-        height: 15vh;
-        border-radius: 100%;
-        font-size: 3.5em;
-        margin: 0.3%;
-    }
+.milei{
+    display: flex;
+    width: 40%;
+    justify-content: flex-end;
+}
 
-    .cero {
-        width: 30vh;
-        border-radius: 50vh;
-        text-align: left;
-        padding-left: 35px;
-        padding-right: 100px;
+.historial-content{
+    font-size: 5vh;
+    font-family: 'Roboto';
+    text-align: end;
+}
 
-    }
+@media screen and (max-width: 992px){
 
-    .pantalla {
-        background-color: black;
-    }
+    .milei{
+    display: none;
+}
 
-    .pantalla-calculadora {
-        background-color: black;
-    }
+.historial-content{
+    display: none;
+}
 
-    .calculadora {
-        font-family: 'Open 24 Display St';
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-    }
-
-    .pantalla {
-        text-align: end;
-        width: 45vh;
-        overflow: hidden;
-        margin-left: 38vw;
-    }
-
-    .pantalla-botones {
-        display: flex;
-
-    }
-
-    .ColorGris {
-        background-color: rgb(195, 187, 187);
-    }
-
-    .ColorNaranja {
-        background-color: orange;
-    }
+}
 </style>
 
-
 <div class="calculadora">
-    <div class="pantalla">
-        <input type="" name="mogul">
-        <div class="pantalla-botones">
-            <button onclick="borrar2()">X</button>
-        </div>
-
-    </div>
     <div class="containerbtn">
         <div class="botones">
-
-
-            <div class="botones-fx">
-                <button onclick="borrar()">AC</button>
-                <button onclick="">(</button>
-                <button onclick="">)</button>
-                <button class="ColorNaranja" onclick="dividir()">/</button>
+            <div class="pantalla">
+                    <h2 class="input" id="display">0</h2>
+                </div>
+                
+                <div class="botones-fx">
+                    <button class="ColorG" id="AC" onclick="borrardisplay(); bulk()">AC</button>
+                    <button class="ColorG" onclick="DisplayAdd('('); bulk()">(</button>
+                    <button class="ColorG" onclick="DisplayAdd(')'); bulk()">)</button>
+                    <button class="ColorNaranja" onclick="DisplayAdd('/'); bulk()">/</button>
+                </div>
+                <div class="botones-num">
+                    <button class="ColorGris" onclick="DisplayAdd(7); bulk()">7</button>
+                    <button class="ColorGris" onclick="DisplayAdd(8); bulk()">8</button>
+                    <button class="ColorGris" onclick="DisplayAdd(9); bulk()">9</button>
+                    <button class="ColorNaranja" onclick="DisplayAdd('*'); bulk()">x</button>
+                </div>
+                    
+                    <div class="botones-num">
+                        <button class="ColorGris" onclick="DisplayAdd(4); bulk()">4</button>
+                        <button class="ColorGris" onclick="DisplayAdd(5); bulk()">5</button>
+                        <button class="ColorGris" onclick="DisplayAdd(6); bulk()">6</button>
+                        <button class="ColorNaranja" onclick="DisplayAdd('-'); bulk()">-</button>
+                    </div>
+                    <div class="botones-num">
+                        <button class="ColorGris" onclick="DisplayAdd(1); bulk()">1</button>
+                        <button class="ColorGris" onclick="DisplayAdd(2); bulk()">2</button>
+                        <button class="ColorGris" onclick="DisplayAdd(3); bulk()">3</button>
+                        <button class="ColorNaranja" onclick="DisplayAdd('+'); bulk()">+</button>
+                    </div>
+                    <div class="botones-num">
+                        <button class="ColorGris cero" onclick="DisplayAdd(0); bulk()">0</button>
+                        <button class="ColorGris punto" onclick="DisplayAdd('.'); bulk()">.</button>
+                        <button class="ColorNaranja" class="igual" onclick="calculate(); bulk(); actu()">=</button>    
+                    </div>
+                    
+                </div>
+                <div class="milei"><div class="historial-content" id="historial-content" style="color: #fff;"></div></div>
             </div>
-
-            <div class="botones-num">
-                <button class="ColorGris" onclick="num(7)">7</button>
-                <button class="ColorGris" onclick="num(8)">8</button>
-                <button class="ColorGris" onclick="num(9)">9</button>
-                <button class="ColorNaranja" onclick="product()">x</button>
-            </div>
-
-            <div class="botones-num">
-                <button class="ColorGris" onclick="num(4)">4</button>
-                <button class="ColorGris" onclick="num(5)">5</button>
-                <button class="ColorGris" onclick="num(6)">6</button>
-                <button class="ColorNaranja" onclick="rest()">-</button>
-            </div>
-            <div class="botones-num">
-                <button class="ColorGris" onclick="num(1)">1</button>
-                <button class="ColorGris" onclick="num(2)">2</button>
-                <button class="ColorGris" onclick="num(3)">3</button>
-                <button class="ColorNaranja" onclick="suma()">+</button>
-            </div>
-            <div class="botones-num">
-                <button class="ColorGris cero" onclick="num(0)">0</button>
-                <button class="ColorGris punto" onclick="coma()">.</button>
-                <button class="ColorNaranja" class="igual" onclick="resultado()">=</button>
-            </div>
-        </div>
     </div>
+    </div>
+        
 </div>
+    
+    <script>
+        let empty = true;
+        let display = document.getElementById("display");
 
-<script>
-    function borrar() {
-        alert("ola")
-    }
-    function num(num) {
 
-    }
+
+        const vaciar = () => {
+            const datosVacios = [];
+
+            fs.writeFileSync("historial.json", JSON.stringify(datosVacios, null, 2));
+        }
+
+        const bulk = () => {
+            var contenedor = document.getElementById("AC");
+            if (empty === true) {
+            contenedor.innerHTML = "AC";
+            } else {
+                contenedor.innerHTML = "C";
+            }
+        }
+
+        const borrardisplay = () => {
+            display.textContent = "0";
+            empty = true;
+        }
+
+        const DisplayAdd = (operator) => {
+            if (empty) {
+                if (!isNaN(operator)) {
+                    display.textContent = operator
+                    empty = false
+                } else {
+                    display.textContent = `0${operator}`
+                } 
+            } else {
+                if (isNaN(display.textContent[display.textContent.length - 1])) {
+                    if (!isNaN(operator)) {
+                        display.textContent += operator
+                    } else {
+                        if (operator == "(" || operator == ")") {
+                            display.textContent += operator
+                        } else display.textContent = display.textContent.slice(0, -1) + operator;
+                    }
+                } else {
+                    display.textContent += operator;
+                }
+            }
+        }
+        const calculate = () => {
+
+        try {
+            let cuenta = display.textContent;
+            let resultado = eval(display.textContent);
+            display.textContent = resultado;
+            let registro = {
+            cuenta: cuenta,
+            resultado: resultado
+            };
+
+            const historialDer = document.getElementById('HistorialDer');
+            fetch('/HistorialAdd', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify(registro)
+            })
+            .then(response => response.json())
+            .then(data => {
+            historialDer.innerHTML = '0'; // Borra el contenido anterior del historial;
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+        } catch {
+            display.textContent = 'ERROR';
+            borrardisplay();
+        }
+        }
+
+
+function actu(){
+    const historialContent = document.getElementById('historial-content');
+    fetch('/MostrarHistorial')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.historial && data.historial.length > 0) {
+                            historialContent.innerHTML = ''; // Limpiar el contenido anterior del historial
+                            data.historial.forEach(item => {
+                                const cuenta = item.cuenta;
+                                const resultado = item.resultado;
+                                historialContent.innerHTML += `${resultado} = ${cuenta}<br>`;
+                            });
+                        } else {
+                            historialContent.innerHTML = 'El historial está vacío.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar el historial:', error);
+                    });
+                historialContent.style.display = 'block'; 
+}
 </script>
+<style>
+   

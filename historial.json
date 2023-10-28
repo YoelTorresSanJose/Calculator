@@ -1,0 +1,18 @@
+[
+  {
+    "cuenta": "25",
+    "resultado": 25
+  },
+  {
+    "cuenta": "0",
+    "resultado": 0
+  },
+  {
+    "cuenta": "3+3",
+    "resultado": 6
+  },
+  {
+    "cuenta": "0",
+    "resultado": 0
+  }
+]
